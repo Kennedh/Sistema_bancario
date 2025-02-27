@@ -20,6 +20,13 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 ---
 
 ## 🔢 Regras de Negócio
-- 🔒 O usuário pode **realizar quantos depósitos quiser**, desde que sejam valores positivos.
-- 💸 O **saque tem limite diário de 3 retiradas** e um **valor máximo de R$ 500 por saque**.
+- 🔒 ~~O usuário pode **realizar quantos depósitos quiser**, desde que sejam valores positivos.~~
+- 💸 ~~O **saque tem limite diário de 3 retiradas** e um **valor máximo de R$ 500 por saque**.~~
 - 🔎 O **extrato mostra todas as transações** (depósitos e saques) e o saldo atual da conta.
+
+---
+
+## Atualizações
+- Limitado sistema a 10 transações por dia;
+- Exibir mensagem quando usuário exceder o limite de transações;
+- Adicionar data e hora em todas as transações no extrano.
