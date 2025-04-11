@@ -16,17 +16,36 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 - 🎮 **Lógica de Programação**
 - 🔄 **Estruturas Condicionais e Laços de Repetição**
 - 🌐 **Manipulação de Strings e Listas**
+- 🧱 **Programação Orientada a Objetos (POO)**
 
 ---
 
 ## 🔢 Regras de Negócio
-- 🔒 ~~O usuário pode **realizar quantos depósitos quiser**, desde que sejam valores positivos.~~
-- 💸 ~~O **saque tem limite diário de 3 retiradas** e um **valor máximo de R$ 500 por saque**.~~
-- 🔎 O **extrato mostra todas as transações** (depósitos e saques) e o saldo atual da conta.
+
+- ✅ **Depósito**
+  - Permitido apenas com valor **positivo**.
+  - Depósitos bem-sucedidos são registrados no **histórico da conta**.
+
+- ✅ **Saque**
+  - Permitido se houver **saldo suficiente**.
+  - Valor deve ser **positivo** e **não exceder R$ 500 por saque**.
+  - Máximo de **3 saques por conta**.
+  - Saques válidos são registrados no **histórico da conta**.
+
+- ✅ **Extrato**
+  - Mostra todas as transações realizadas (saques e depósitos).
+  - Exibe também o **saldo atual** da conta.
+  - Inclui **data e hora** de cada transação.
+
+- ✅ **Clientes e Contas**
+  - Cada cliente pode ter **múltiplas contas**.
+  - No momento, o sistema **utiliza sempre a primeira conta do cliente**.
+  - Cada conta possui um **histórico individual de transações**.
 
 ---
 
-## Atualizações
-- Limitado sistema a 10 transações por dia;
-- Exibir mensagem quando usuário exceder o limite de transações;
-- Adicionar data e hora em todas as transações no extrano.
+## 📌 Atualizações
+- ✔️ Refatoração completa para **POO** com classes `Cliente`, `Conta`, `Transação`, entre outras.
+- ✔️ Sistema de **histórico de transações com data/hora**.
+- ✔️ Regras mais rígidas para saque e depósitos.
+- ✔️ Organização das responsabilidades em métodos e classes para facilitar manutenção e testes futuros.
