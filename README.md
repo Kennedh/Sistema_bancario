@@ -17,6 +17,7 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 - 🔄 **Estruturas Condicionais e Laços de Repetição**
 - 🌐 **Manipulação de Strings e Listas**
 - 🧱 **Programação Orientada a Objetos (POO)**
+- 🧩 **Classes Abstratas (ABC)**
 
 ---
 
@@ -29,7 +30,7 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 - ✅ **Saque**
   - Permitido se houver **saldo suficiente**.
   - Valor deve ser **positivo** e **não exceder R$ 500 por saque**.
-  - Máximo de **3 saques por conta**.
+  - Máximo de **3 saques por dia**.
   - Saques válidos são registrados no **histórico da conta**.
 
 - ✅ **Extrato**
@@ -44,8 +45,43 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 
 ---
 
+## 🏗️ Estrutura do Projeto
+
+O sistema foi desenvolvido utilizando **Programação Orientada a Objetos** com as seguintes classes:
+
+- **Cliente**: Classe base para representação de clientes
+- **PessoaFisica**: Herda de Cliente, adiciona CPF, nome e data de nascimento
+- **Conta**: Classe base para contas bancárias
+- **ContaCorrente**: Herda de Conta, implementa regras específicas como limite de saque
+- **Historico**: Gerencia o registro de transações
+- **Transacao**: Classe abstrata para diferentes tipos de transações
+- **Saque** e **Deposito**: Implementações concretas de Transacao
+
+---
+
+## 🚀 Como Executar
+
+1. Certifique-se de ter Python 3.x instalado
+2. Execute o arquivo principal: `python sistema_bancario.py`
+3. Siga as opções do menu interativo
+
+---
+
 ## 📌 Atualizações
 - ✔️ Refatoração completa para **POO** com classes `Cliente`, `Conta`, `Transação`, entre outras.
 - ✔️ Sistema de **histórico de transações com data/hora**.
 - ✔️ Regras mais rígidas para saque e depósitos.
 - ✔️ Organização das responsabilidades em métodos e classes para facilitar manutenção e testes futuros.
+- ✔️ Correção de imports e decoradores abstratos.
+- ✔️ Correção do formato de data no histórico de transações.
+- ✔️ Implementação correta do limite de saques diários.
+
+---
+
+## ⚠️ Correções Realizadas
+
+### v1.0.1
+- Corrigido import de `ABC` e `abstractmethod`
+- Ajustado formato de data no extrato (`%S` maiúsculo para segundos)
+- Atualizada documentação para refletir regra de "3 saques por dia"
+- Removidos códigos FIXME e comentários desatualizados
