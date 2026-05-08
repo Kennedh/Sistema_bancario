@@ -1,5 +1,5 @@
 import textwrap
-from abc import ABC, abstractclassmethod, abstractproperty
+from abc import ABC, abstractmethod, abstractproperty
 from datetime import datetime
 
 
@@ -90,8 +90,12 @@ class ContaCorrente(Conta):
         self._limite_saques = limite_saques
 
     def sacar(self, valor):
+        # Conta apenas saques do dia atual
+        data_atual = datetime.now().strftime("%d-%m-%Y")
         numero_saques = len(
-            [transacao for transacao in self.historico.transacoes if transacao["tipo"] == Saque.__name__]
+            [transacao for transacao in self.historico.transacoes 
+             if transacao["tipo"] == Saque.__name__ 
+             and transacao["data"].startswith(data_atual)]
         )
 
         excedeu_limite = valor > self._limite
@@ -101,7 +105,7 @@ class ContaCorrente(Conta):
             print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
 
         elif excedeu_saques:
-            print("\n@@@ Operação falhou! Número máximo de saques excedido. @@@")
+            print(f"\n@@@ Operação falhou! Número máximo de saques diários ({self._limite_saques}) excedido. @@@")
 
         else:
             return super().sacar(valor)
@@ -129,7 +133,7 @@ class Historico:
             {
                 "tipo": transacao.__class__.__name__,
                 "valor": transacao.valor,
-                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),
+                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
             }
         )
 
@@ -140,7 +144,7 @@ class Transacao(ABC):
     def valor(self):
         pass
 
-    @abstractclassmethod
+    @abstractmethod
     def registrar(self, conta):
         pass
 
@@ -176,7 +180,7 @@ class Deposito(Transacao):
 
 
 def menu():
-    menu = """\n
+    menu_texto = """\n
     ================ MENU ================
     [d]\tDepositar
     [s]\tSacar
@@ -186,7 +190,7 @@ def menu():
     [nu]\tNovo usuário
     [q]\tSair
     => """
-    return input(textwrap.dedent(menu))
+    return input(textwrap.dedent(menu_texto))
 
 
 def filtrar_cliente(cpf, clientes):
@@ -197,9 +201,9 @@ def filtrar_cliente(cpf, clientes):
 def recuperar_conta_cliente(cliente):
     if not cliente.contas:
         print("\n@@@ Cliente não possui conta! @@@")
-        return
+        return None
 
-    # FIXME: não permite cliente escolher a conta
+    # Usa sempre a primeira conta do cliente
     return cliente.contas[0]
 
 
@@ -259,10 +263,10 @@ def exibir_extrato(clientes):
         extrato = "Não foram realizadas movimentações."
     else:
         for transacao in transacoes:
-            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}"
+            extrato += f"\n{transacao['data']} - {transacao['tipo']}: R$ {transacao['valor']:.2f}"
 
     print(extrato)
-    print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
+    print(f"\nSaldo:\tR$ {conta.saldo:.2f}")
     print("==========================================")
 
 
@@ -339,4 +343,5 @@ def main():
             print("\n@@@ Operação inválida, por favor selecione novamente a operação desejada. @@@")
 
 
-main()
+if __name__ == "__main__":
+    main()
