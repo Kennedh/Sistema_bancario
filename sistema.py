@@ -363,6 +363,18 @@ class BancoApp:
                 messagebox.showerror("Erro", "Valor máximo de saque: R$ 500")
                 return
 
+            # Verificar limite de saques diários
+            data_atual = datetime.now().strftime("%d-%m-%Y")
+            numero_saques = len(
+                    [transacao for transacao in self.conta_logada.historico.transacoes
+                     if transacao["tipo"] == "Saque"
+                     and transacao["data"].startswith(data_atual)]
+                )
+
+            if numero_saques >= 3:
+                messagebox.showerror("Erro", "Limite de 3 saques diários atingido! Tente novamente amanhã.")
+                return
+
             transacao = Saque(valor)
             self.cliente_logado.realizar_transacao(self.conta_logada, transacao)
 
