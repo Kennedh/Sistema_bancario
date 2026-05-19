@@ -359,6 +359,9 @@ class BancoApp:
             if valor <= 0:
                 messagebox.showerror("Erro", "Valor deve ser positivo!")
                 return
+            if valor > 500:
+                messagebox.showerror("Erro", "Valor máximo de saque: R$ 500")
+                return
 
             transacao = Saque(valor)
             self.cliente_logado.realizar_transacao(self.conta_logada, transacao)
