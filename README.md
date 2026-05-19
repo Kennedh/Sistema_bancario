@@ -11,6 +11,18 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 
 ---
 
+## 🎨 Versão com Interface Gráfica (CustomTkinter)
+
+Além da versão em terminal, o sistema conta agora com uma **interface desktop moderna** desenvolvida com **CustomTkinter**, oferecendo:
+
+- 🌙 **Modo escuro (Dark Mode)** por padrão
+- 🖱️ **Interface intuitiva com botões e campos de entrada**
+- 👤 **Sistema de login por CPF**
+- 📊 **Extrato visual com cores diferenciadas** (verde para depósitos, vermelho para saques)
+- 🎨 **Design profissional e arredondado**
+
+---
+
 ## 🛠 Tecnologias Utilizadas
 - 💻 **Python 3.x**
 - 🎮 **Lógica de Programação**
@@ -18,6 +30,7 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 - 🌐 **Manipulação de Strings e Listas**
 - 🧱 **Programação Orientada a Objetos (POO)**
 - 🧩 **Classes Abstratas (ABC)**
+- 🖼️ **CustomTkinter** - Interface gráfica moderna
 
 ---
 
@@ -49,13 +62,17 @@ O sistema visa simular operações bancárias e proporcionar uma experiência pr
 
 O sistema foi desenvolvido utilizando **Programação Orientada a Objetos** com as seguintes classes:
 
-- **Cliente**: Classe base para representação de clientes
-- **PessoaFisica**: Herda de Cliente, adiciona CPF, nome e data de nascimento
-- **Conta**: Classe base para contas bancárias
-- **ContaCorrente**: Herda de Conta, implementa regras específicas como limite de saque
-- **Historico**: Gerencia o registro de transações
-- **Transacao**: Classe abstrata para diferentes tipos de transações
-- **Saque** e **Deposito**: Implementações concretas de Transacao
+| Classe | Descrição |
+|--------|------------|
+| **Cliente** | Classe base para representação de clientes |
+| **PessoaFisica** | Herda de Cliente, adiciona CPF, nome e data de nascimento |
+| **Conta** | Classe base para contas bancárias |
+| **ContaCorrente** | Herda de Conta, implementa regras específicas como limite de saque |
+| **Historico** | Gerencia o registro de transações com data/hora |
+| **Transacao** | Classe abstrata para diferentes tipos de transações |
+| **Saque** | Implementação concreta de saque |
+| **Deposito** | Implementação concreta de depósito |
+| **BancoApp** | Interface gráfica com CustomTkinter (nova versão) |
 
 ---
 
@@ -85,3 +102,10 @@ O sistema foi desenvolvido utilizando **Programação Orientada a Objetos** com 
 - Ajustado formato de data no extrato (`%S` maiúsculo para segundos)
 - Atualizada documentação para refletir regra de "3 saques por dia"
 - Removidos códigos FIXME e comentários desatualizados
+
+### v2.0.0 (Interface Gráfica)
+- Adicionada interface desktop com CustomTkinter
+- Sistema de login por CPF
+- Extrato visual com cores diferenciadas
+- Modo escuro como padrão
+- Validação de campos em tempo real
